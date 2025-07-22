@@ -1,0 +1,260 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 100% 4%;
+    --foreground: 180 100% 85%;
+    --card: 240 50% 8%;
+    --card-foreground: 180 100% 85%;
+    --popover: 240 100% 6%;
+    --popover-foreground: 180 100% 90%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 100% 4%;
+    --primary-glow: 180 100% 70%;
+    --secondary: 300 100% 50%;
+    --secondary-foreground: 240 100% 4%;
+    --secondary-glow: 300 100% 70%;
+    --accent: 120 100% 50%;
+    --accent-foreground: 240 100% 4%;
+    --accent-glow: 120 100% 70%;
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --muted: 240 30% 15%;
+    --muted-foreground: 180 50% 65%;
+    --border: 180 100% 25%;
+    --input: 240 50% 10%;
+    --ring: 180 100% 50%;
+    --quantum-alpha: 200 100% 50%;
+    --quantum-beta: 300 100% 50%;
+    --quantum-gamma: 120 100% 50%;
+    --quantum-delta: 60 100% 50%;
+    --gradient-quantum: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    --gradient-cyber: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-timeline: linear-gradient(45deg, hsl(var(--quantum-alpha)), hsl(var(--quantum-beta)));
+    --shadow-neon: 0 0 20px hsl(var(--primary) / 0.5);
+    --shadow-cyber: 0 0 30px hsl(var(--secondary) / 0.4);
+    --shadow-quantum: 0 5px 25px hsl(var(--accent) / 0.3);
+    --transition-quantum: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --pulse-duration: 2s;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Rajdhani', 'Segoe UI', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', 'Segoe UI', system-ui, sans-serif;
+  }
+
+}
+
+@layer components {
+  .neon-glow {
+    @apply shadow-[0_0_20px_hsl(var(--primary)/0.5)] border border-primary/50;
+  }
+
+  .cyber-glow {
+    @apply shadow-[0_0_30px_hsl(var(--secondary)/0.4)] border border-secondary/50;
+  }
+
+  .quantum-pulse {
+    animation: quantum-pulse var(--pulse-duration) infinite;
+  }
+
+  .loading-bar-fill {
+    animation: loading-bar 2s ease-in-out infinite;
+  }
+
+  .particle-float {
+    animation: particle-float 4s ease-in-out infinite;
+  }
+
+  .quantum-scan {
+    animation: quantum-scan 3s ease-in-out infinite;
+  }
+
+  .animate-reverse {
+    animation-direction: reverse;
+  }
+
+  .scanlines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 50%,
+      hsl(var(--primary) / 0.03) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+  }
+
+  .matrix-bg {
+    background: 
+      radial-gradient(circle at 25% 25%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(var(--secondary) / 0.1) 0%, transparent 50%);
+  }
+
+  .typewriter {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--primary));
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  .quantum-btn {
+    @apply relative overflow-hidden px-8 py-4 rounded-lg font-semibold transition-all duration-300;
+    @apply bg-gradient-to-r from-primary/20 to-secondary/20;
+    @apply border border-primary/50 hover:border-primary;
+    @apply shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.6)];
+  }
+
+  .quantum-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.4), transparent);
+    transition: left 0.5s;
+  }
+
+  .quantum-btn:hover::before {
+    left: 100%;
+  }
+
+  .timeline-indicator {
+    @apply relative px-4 py-2 rounded-full font-medium transition-all duration-300;
+    @apply border-2 border-current text-center min-w-[100px];
+  }
+
+  .timeline-alpha {
+    @apply text-[hsl(var(--quantum-alpha))] border-[hsl(var(--quantum-alpha))];
+    @apply shadow-[0_0_15px_hsl(var(--quantum-alpha)/0.4)];
+  }
+
+  .timeline-beta {
+    @apply text-[hsl(var(--quantum-beta))] border-[hsl(var(--quantum-beta))];
+    @apply shadow-[0_0_15px_hsl(var(--quantum-beta)/0.4)];
+  }
+
+  .timeline-gamma {
+    @apply text-[hsl(var(--quantum-gamma))] border-[hsl(var(--quantum-gamma))];
+    @apply shadow-[0_0_15px_hsl(var(--quantum-gamma)/0.4)];
+  }
+
+  .timeline-delta {
+    @apply text-[hsl(var(--quantum-delta))] border-[hsl(var(--quantum-delta))];
+    @apply shadow-[0_0_15px_hsl(var(--quantum-delta)/0.4)];
+  }
+}
+
+@keyframes quantum-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: hsl(var(--primary)); }
+}
+
+@keyframes matrix-rain {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes quantum-jump {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0; transform: scale(1.1) rotateX(90deg); }
+  100% { opacity: 1; transform: scale(1) rotateX(0deg); }
+}
+
+@keyframes neon-flicker {
+  0%, 100% { opacity: 1; }
+  2% { opacity: 0.8; }
+  4% { opacity: 1; }
+  8% { opacity: 0.9; }
+  10% { opacity: 1; }
+}
+
+@keyframes loading-bar {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  25% { transform: translateY(-10px) translateX(5px) scale(1.1); }
+  50% { transform: translateY(-5px) translateX(-5px) scale(0.9); }
+  75% { transform: translateY(-15px) translateX(3px) scale(1.05); }
+}
+
+@keyframes quantum-scan {
+  0% { transform: translateX(-100%) scaleX(0.5); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(200%) scaleX(2); opacity: 0; }
+}
